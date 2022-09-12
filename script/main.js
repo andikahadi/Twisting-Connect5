@@ -54,22 +54,83 @@ generateSmallBoard();
 //
 //////////////
 
+let rotateDone = true;
+
+function validMove(idString) {
+  let coorArr = getCoordinates(idString);
+  let x;
+  let y;
+  const medBoardId = idString.charAt(1);
+  for (let i = 0; i < coorArr.length; i += 2) {
+    y = parseInt(coorArr[i]);
+    x = parseInt(coorArr[i + 1]);
+  }
+  let medArr = allMediumArr[medBoardId];
+
+  if (medArr[y][x] === 0 && rotateDone === true) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// let smallBoard;
+
+// while (winner === false && moveCount <= 36) {
 
 let value = 1;
-document.querySelector('.board-large').addEventListener('click', function (e) {
+let smallBoard;
+
+document.querySelector('.board-large').addEventListener('click', firstMove);
+
+function firstMove(e) {
+  // e.stopImmediatePropagation();
+  // this.removeEventListener('click', firstMove)
+  smallBoard = e.target;
   const smallBoardId = e.target.id;
 
-  putStone(smallBoardId, allMediumArr, value);
-  if (value === 1) {
-    e.target.style.backgroundColor = "black";
-    value = 2;
+  if (validMove(smallBoardId)) {
+    if (value === 1) {
+      e.target.style.backgroundColor = "black";
+      putStone(smallBoardId, allMediumArr, value);
+      value = 2;
+      rotateDone = false;
+    } else {
+      e.target.style.backgroundColor = "white";
+      putStone(smallBoardId, allMediumArr, value);
+      value = 1;
+      rotateDone = false;
+    }
   } else {
-    e.target.style.backgroundColor = "white";
-    value = 1;
+    alert("not a valid move");
   }
+
+  document.querySelector('.move-box').addEventListener('click', secondMove);
+};
+
+function secondMove(e) {
+  console.log(smallBoard);
+  let medBoard = smallBoard.parentNode;
+  rotateDone = true;
+  let medBoardId = medBoard.id.charAt(1);
+  if (e.target.id === 'clockwise') {
+    clockwiseRotate(allMediumArr[medBoardId])
+  } else if (e.target.id === 'counter') {
+    counterCwRotate(allMediumArr[medBoardId])
+  }
+
+  // const medBoard = e.target.parentNode;
+  // const medBoardId = medBoard.id.charAt(1);
+  // console.log(medBoardId);
+  // document.querySelector(".move-box").addEventListener('click', function (e) {
+  //   if (e.target.id === "clockwise") {
+  //     clockwiseRotate(allMediumArr[medBoardId]);
+  //   } else if (e.target.id === "counter") {
+  //     counterCwRotate(allMediumArr[medBoardId])
+  //   }
 
   let combineArray = combineArrayVertical(combineArrayHorizontal(allMediumArr[0], allMediumArr[1]), combineArrayHorizontal(allMediumArr[2], allMediumArr[3]));
 
   console.log(combineArray);
-  console.log(checkWinner(combineArray));
-});
+  checkWinner(combineArray);
+}

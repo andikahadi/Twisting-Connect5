@@ -54,7 +54,7 @@ function checkWinner(arr) {
       } else { // if stone is same as previous
         consecutiveCount += 1;
         if (isFive(consecutiveCount)) {
-          return `We have a winner : ${arr[i][j]}`
+          return true
         }
       }
     }
@@ -74,7 +74,7 @@ function checkWinner(arr) {
       } else { // if stone is same as previous
         consecutiveCount += 1;
         if (isFive(consecutiveCount)) {
-          return `We have a winner : ${arr[i][j]}`
+          return true
         }
       }
     }
@@ -94,7 +94,7 @@ function checkWinner(arr) {
       } else {
         consecutiveCount += 1;
         if (isFive(consecutiveCount)) {
-          return `We have a winner : ${arr[i][j]}`
+          return true
         }
       }
       // console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
@@ -115,7 +115,7 @@ function checkWinner(arr) {
       } else {
         consecutiveCount += 1;
         if (isFive(consecutiveCount)) {
-          return `We have a winner : ${arr[i][j]}`
+          return true
         }
       }
       // console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
@@ -172,7 +172,7 @@ function checkWinner(arr) {
       j += 1;
     }
   }
-
+  return false;
   console.log("no winner yet");
 };
 

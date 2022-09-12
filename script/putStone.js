@@ -28,14 +28,8 @@ function putStone(idString, allMediumArr, value) {
   }
   let medArr = allMediumArr[medBoardId];
   // let stoneInHand = true;
-
-  if (medArr[y][x] === 0) {
-    medArr[y][x] = value;
-    return value;
-    // stoneInHand = false;
-  } else {
-    alert("Not a valid move");
-  }
+  medArr[y][x] = value;
+  // stoneInHand = false;
 
 
   // console.log(`x: ${x}  y: ${y} medArr[${y}][${x}] : ${medArr[y][x]}`);

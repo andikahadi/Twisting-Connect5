@@ -65,3 +65,7 @@ body {
   height: 50%;
   border: 1px solid black;
 }
+
+.redBorder {
+  border: 2px solid red;
+}

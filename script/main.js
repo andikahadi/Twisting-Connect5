@@ -3,11 +3,11 @@
 
 const arrWinX = [
   [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 2, 0],
-  [1, 1, 1, 1, 2, 0],
-  [0, 0, 0, 1, 2, 0],
-  [0, 0, 0, 1, 2, 0],
-  [0, 0, 0, 1, 2, 0]
+  [0, 0, 0, 1, 0, 2],
+  [0, 0, 1, 0, 2, 0],
+  [0, 1, 0, 2, 0, 0],
+  [1, 0, 2, 0, 0, 0],
+  [0, 2, 0, 0, 0, 0]
 ];
 
 // const arrWinX = [
@@ -29,14 +29,9 @@ const arrWinX = [
 // ];
 
 
-
-
-//traverse per column
-// const rowColumn = [];
-
-// 
-
-// console.log(rowColumn);
+/////////////////
+// Check Winner : iterating through the whole table
+////////////////
 
 
 function checkWinner(arr) {
@@ -46,6 +41,7 @@ function checkWinner(arr) {
       return true
     }
   }
+
 
   for (let i = 0; i < arr.length; i++) {
     let consecutiveCount = 0;
@@ -61,7 +57,7 @@ function checkWinner(arr) {
       }
     }
   }
-
+  console.log("No winner from row");
   //check per column if there's 5 in a row
 
   for (let j = 0; j < arr[0].length; j++) {
@@ -78,6 +74,48 @@ function checkWinner(arr) {
       }
     }
   }
+  console.log("no winner from column");
+
+  // check diagonal left bottom to top right
+  for (let k = 0; k < arr.length; k++) {
+    let i = k;
+    let j = 0;
+    let consecutiveCount = 0;
+    while (i >= 0) {
+      if ((consecutiveCount === 0 || arr[i][j] === arr[i + 1][j - 1]) && arr[i][j] !== 0) { //if start of a new consecutive, or stone is same as previous
+        consecutiveCount += 1;
+        console.log(consecutiveCount);
+        if (isFive(consecutiveCount)) {
+          return `We have a winner : ${arr[i][j]}`
+        }
+      } else {
+        consecutiveCount = 0;
+      }
+      i -= 1;
+      j += 1;
+    }
+  }
+
+  for (let k = 1; k < arr.length; k++) {
+    let i = arr.length - 1;
+    let j = k;
+    let consecutiveCount = 0;
+    while (i >= 0) {
+      if ((consecutiveCount === 0 || arr[i][j] === arr[i + 1][j - 1]) && arr[i][j] !== 0) { //if start of a new consecutive, or stone is same as previous
+        consecutiveCount += 1;
+        console.log(consecutiveCount);
+        if (isFive(consecutiveCount)) {
+          return `We have a winner : ${arr[i][j]}`
+        }
+      } else {
+        consecutiveCount = 0;
+      }
+      i -= 1;
+      j += 1;
+    }
+  }
+
+
 };
 
 console.log(checkWinner(arrWinX));

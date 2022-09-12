@@ -60,6 +60,7 @@ function checkWinner(arr) {
     }
   }
   console.log("No winner from row");
+
   //check per column if there's 5 in a row
 
   for (let j = 0; j < arr[0].length; j++) {
@@ -96,7 +97,7 @@ function checkWinner(arr) {
           return `We have a winner : ${arr[i][j]}`
         }
       }
-      console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
+      // console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
       i -= 1;
       j += 1;
     }
@@ -117,7 +118,7 @@ function checkWinner(arr) {
           return `We have a winner : ${arr[i][j]}`
         }
       }
-      console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
+      // console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
 
       i -= 1;
       j += 1;
@@ -143,7 +144,7 @@ function checkWinner(arr) {
           return `We have a winner : ${arr[i][j]}`
         }
       }
-      console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
+      // console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
       i += 1;
       j += 1;
     }
@@ -166,11 +167,13 @@ function checkWinner(arr) {
           return `We have a winner : ${arr[i][j]}`
         }
       }
-      console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
+      // console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
       i += 1;
       j += 1;
     }
   }
+
+  console.log("no winner yet");
 };
 
 console.log(checkWinner(arrWinX));

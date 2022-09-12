@@ -1,32 +1,32 @@
 "use strict";
 
 
+// const arrWinX = [
+//   [0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 2],
+//   [0, 0, 0, 0, 2, 0],
+//   [0, 0, 0, 2, 0, 0],
+//   [0, 0, 2, 0, 0, 0],
+//   [0, 2, 0, 0, 0, 0]
+// ];
+
+// const arrWinX = [
+//   [0, 1, 1, 1, 1, 0],
+//   [1, 1, 1, 1, 0, 0],
+//   [1, 1, 1, 1, 0, 1],
+//   [1, 1, 0, 0, 1, 0],
+//   [1, 0, 0, 1, 0, 0],
+//   [0, 0, 1, 0, 0, 0]
+// ];
+
 const arrWinX = [
-  [0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 0, 2],
-  [0, 0, 1, 0, 2, 0],
-  [0, 1, 0, 2, 0, 0],
-  [1, 0, 2, 0, 0, 0],
-  [0, 2, 0, 0, 0, 0]
+  [1, 1, 0, 0, 0, 0],
+  [0, 2, 1, 0, 0, 0],
+  [1, 0, 2, 1, 0, 0],
+  [0, 1, 0, 2, 1, 0],
+  [1, 0, 1, 0, 2, 1],
+  [0, 1, 0, 2, 0, 2]
 ];
-
-// const arrWinX = [
-//   [1, 3, 6, 0, 0, 0],
-//   [2, 5, 0, 0, 0, 0],
-//   [4, 1, 1, 1, 1, 0],
-//   [0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0]
-// ];
-
-// const arrWinX = [
-//   [0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0],
-//   [1, 1, 1, 1, 1, 0],
-//   [4, 0, 0, 0, 0, 0],
-//   [2, 5, 0, 0, 0, 0],
-//   [1, 3, 6, 0, 0, 0]
-// ];
 
 
 /////////////////
@@ -76,46 +76,97 @@ function checkWinner(arr) {
   }
   console.log("no winner from column");
 
-  // check diagonal left bottom to top right
+  // check diagonal left bottom to top right  --> rectify done
   for (let k = 0; k < arr.length; k++) {
     let i = k;
     let j = 0;
     let consecutiveCount = 0;
     while (i >= 0) {
-      if ((consecutiveCount === 0 || arr[i][j] === arr[i + 1][j - 1]) && arr[i][j] !== 0) { //if start of a new consecutive, or stone is same as previous
+      if (arr[i][j] === 0) {
+        consecutiveCount += 0
+      } else if (consecutiveCount === 0 || arr[i][j] !== arr[i + 1][j - 1]) { //if start of a new consecutive, or stone is different as previous
+        consecutiveCount = 1;
+      } else {
         consecutiveCount += 1;
-        console.log(consecutiveCount);
         if (isFive(consecutiveCount)) {
           return `We have a winner : ${arr[i][j]}`
         }
-      } else {
-        consecutiveCount = 0;
       }
+      console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
       i -= 1;
       j += 1;
     }
   }
 
-  for (let k = 1; k < arr.length; k++) {
+  for (let k = 1; k < arr[0].length; k++) {
     let i = arr.length - 1;
     let j = k;
     let consecutiveCount = 0;
-    while (i >= 0) {
-      if ((consecutiveCount === 0 || arr[i][j] === arr[i + 1][j - 1]) && arr[i][j] !== 0) { //if start of a new consecutive, or stone is same as previous
+    while (j < arr[0].length) {
+      if (arr[i][j] === 0) {
+        consecutiveCount += 0;
+      } else if (consecutiveCount === 0 || arr[i][j] !== arr[i + 1][j - 1]) { //if start of a new consecutive, or stone is different as previous
+        consecutiveCount = 1;
+      } else {
         consecutiveCount += 1;
-        console.log(consecutiveCount);
         if (isFive(consecutiveCount)) {
           return `We have a winner : ${arr[i][j]}`
         }
-      } else {
-        consecutiveCount = 0;
       }
+      console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
+
       i -= 1;
       j += 1;
     }
   }
+  console.log("no winner from diagonal1");
 
 
+  // check diagonal top left to bottom right
+  for (let k = arr.length - 1; k >= 0; k--) {
+    let i = k;
+    let j = 0;
+    let consecutiveCount = 0;
+    while (i <= arr.length - 1) {
+      if (arr[i][j] === 0) {
+        consecutiveCount += 0
+      } else if (consecutiveCount === 0 || arr[i][j] !== arr[i - 1][j - 1]) { //if start of a new consecutive, or stone is same as previous
+        consecutiveCount = 1;
+      } else {
+        consecutiveCount += 1;
+
+        if (isFive(consecutiveCount)) {
+          return `We have a winner : ${arr[i][j]}`
+        }
+      }
+      console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
+      i += 1;
+      j += 1;
+    }
+  }
+
+  for (let k = 1; k <= arr[0].length - 1; k++) {
+    let i = 0;
+    let j = k;
+    let consecutiveCount = 0;
+    while (j <= arr[0].length - 1) {
+      if (arr[i][j] === 0) {
+        consecutiveCount += 0;
+      } else if (consecutiveCount === 0 || arr[i][j] !== arr[i - 1][j - 1]) { //if start of a new consecutive, or stone is same as previous
+        consecutiveCount = 1;
+
+      } else {
+        consecutiveCount += 1;
+
+        if (isFive(consecutiveCount)) {
+          return `We have a winner : ${arr[i][j]}`
+        }
+      }
+      console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
+      i += 1;
+      j += 1;
+    }
+  }
 };
 
 console.log(checkWinner(arrWinX));

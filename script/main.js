@@ -79,15 +79,15 @@ function validMove(idString) {
 // while (winner === false && moveCount <= 36) {
 
 let value = 1;
-let smallBoard;
+let smallBoardIdArr = []
 
 document.querySelector('.board-large').addEventListener('click', firstMove);
 
 function firstMove(e) {
-  // e.stopImmediatePropagation();
-  // this.removeEventListener('click', firstMove)
-  smallBoard = e.target;
+  let smallBoard = e.target;
   const smallBoardId = e.target.id;
+  smallBoardIdArr.push(smallBoardId);
+  console.log(smallBoardIdArr);
 
   if (validMove(smallBoardId)) {
     if (value === 1) {
@@ -109,8 +109,10 @@ function firstMove(e) {
 };
 
 function secondMove(e) {
-  console.log(smallBoard);
-  let medBoard = smallBoard.parentNode;
+  const firstSmallBoardClickedId = smallBoardIdArr.shift();
+  smallBoardIdArr.length = 0;
+  const firstSmallBoardClicked = document.getElementById(`${firstSmallBoardClickedId}`);
+  let medBoard = firstSmallBoardClicked.parentNode;
   rotateDone = true;
   let medBoardId = medBoard.id.charAt(1);
   if (e.target.id === 'clockwise') {

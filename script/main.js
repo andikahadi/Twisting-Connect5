@@ -86,10 +86,11 @@ document.querySelector('.board-large').addEventListener('click', firstMove);
 function firstMove(e) {
   let smallBoard = e.target;
   const smallBoardId = e.target.id;
-  smallBoardIdArr.push(smallBoardId);
+
   console.log(smallBoardIdArr);
 
   if (validMove(smallBoardId)) {
+    smallBoardIdArr.push(smallBoardId);
     if (value === 1) {
       e.target.style.backgroundColor = "black";
       putStone(smallBoardId, allMediumArr, value);
@@ -110,7 +111,7 @@ function firstMove(e) {
 
 function secondMove(e) {
   const firstSmallBoardClickedId = smallBoardIdArr.shift();
-  smallBoardIdArr.length = 0;
+  smallBoardIdArr.length = 0; //reset array to empty
   const firstSmallBoardClicked = document.getElementById(`${firstSmallBoardClickedId}`);
   let medBoard = firstSmallBoardClicked.parentNode;
   rotateDone = true;
@@ -153,6 +154,6 @@ function secondMove(e) {
     console.log(combineArray);
     //check whether there's a winner in combined array
     checkWinner(combineArray);
-  }, 1000);
+  }, 550);
 
 }

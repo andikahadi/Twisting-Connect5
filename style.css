@@ -35,7 +35,7 @@ body {
   align-content: space-around;
   height: 12.5em;
   width: 12.5em;
-  background-color: pink;
+  background-color: #ffe6c5;
   border: 1px solid black;
   /* transition: .5s ease-in-out; */
 }
@@ -45,6 +45,9 @@ body {
   height: 4em;
   width: 4em;
   border: 0.5px solid grey;
+  /* background-image: url(/resources/maki-pixel.gif); */
+  background-size: contain;
+  background-size: cover;
 }
 
 .move-box {
@@ -70,4 +73,21 @@ body {
 
 .redBorder {
   border: 2px solid red;
+}
+
+.maki,
+.nigiri {
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+  background-size: cover;
+  /* background-color: black; */
+}
+
+.maki {
+  background-image: url(/resources/maki-pixel.gif);
+}
+
+.nigiri {
+  background-image: url(/resources/nigiri.gif);
 }

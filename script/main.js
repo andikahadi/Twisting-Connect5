@@ -85,6 +85,21 @@ function validMove(idString) {
 ///////////////////////////
 //Event Listener. firstMove: Place Stone. secondMove: Rotate Medium Board
 ///////////////////////////
+function createMaki(smallBoard) {
+  const gifDiv = document.createElement('div');
+  gifDiv.className = 'maki';
+  smallBoard.append(gifDiv);
+  const medBoardId = smallBoard.parentNode.id;
+  gifDiv.classList.add(`${medBoardId}-sushi`);
+}
+
+function createNigiri(smallBoard) {
+  const gifDiv = document.createElement('div');
+  gifDiv.className = 'nigiri';
+  smallBoard.append(gifDiv);
+  const medBoardId = smallBoard.parentNode.id;
+  gifDiv.classList.add(`${medBoardId}-sushi`);
+}
 
 let value = 1;
 let smallBoardIdArr = []
@@ -92,7 +107,7 @@ let smallBoardIdArr = []
 document.querySelector('.board-large').addEventListener('click', firstMove);
 
 function firstMove(e) {
-  // let smallBoard = e.target;
+  let smallBoard = e.target;
   const smallBoardId = e.target.id; //store id of small board clicked (format: medBoardId,row,column  --> m0,0,0)
 
 
@@ -100,12 +115,14 @@ function firstMove(e) {
     smallBoardIdArr.push(smallBoardId); //track id of first valid move
     // console.log(smallBoardIdArr);
     if (value === 1) {
-      e.target.style.backgroundColor = "black";
+      createMaki(smallBoard);
+      // e.target.style.backgroundImage = "url(/resources/maki-pixel.gif)";
       putStone(smallBoardId, allMediumArr, value);
       value = 2;
       rotateDone = false;
     } else {
-      e.target.style.backgroundColor = "white";
+      createNigiri(smallBoard);
+      // e.target.style.backgroundImage = "url(/resources/nigiri.gif)";
       putStone(smallBoardId, allMediumArr, value);
       value = 1;
       rotateDone = false;
@@ -123,12 +140,23 @@ function secondMove(e) {
   const firstSmallBoardClicked = document.getElementById(`${firstSmallBoardClickedId}`);
   let medBoard = firstSmallBoardClicked.parentNode;
   let medBoardId = medBoard.id.charAt(1); //get id of medium board clicked, use the integer to access 2D array of that medium board 
+  let sushiInside = document.querySelectorAll(`.${medBoard.id}-sushi`);
   if (e.target.id === 'clockwise') {
     clockwiseRotate(allMediumArr[medBoardId])
+    for (let item of sushiInside) {
+      item.style.transition = ".5s ease-in-out";
+      item.style.transform = 'rotate(-90deg)';
+    }
+    console.log(sushiInside);
+
     medBoard.style.transition = ".5s ease-in-out"; //css rotation
     medBoard.style.transform = 'rotate(90deg)'; //css rotation
   } else if (e.target.id === 'counter') {
     counterCwRotate(allMediumArr[medBoardId])
+    for (let item of sushiInside) {
+      item.style.transition = ".5s ease-in-out";
+      item.style.transform = 'rotate(90deg)';
+    }
     medBoard.style.transition = ".5s ease-in-out";
     medBoard.style.transform = 'rotate(-90deg)';
   }
@@ -147,12 +175,15 @@ function secondMove(e) {
         const newSmallBoard = document.createElement('div');
         newSmallBoard.className = "board-small";
         newSmallBoard.id = `${medBoard.id},${i},${j}`;
-        if (medArrRotated[i][j] === 1) {
-          newSmallBoard.style.backgroundColor = "black";
-        } else if (medArrRotated[i][j] === 2) {
-          newSmallBoard.style.backgroundColor = "white";
-        }
+
         medBoard.append(newSmallBoard);
+        if (medArrRotated[i][j] === 1) {
+          createMaki(newSmallBoard);
+          // newSmallBoard.style.backgroundImage = "url(/resources/maki-pixel.gif)";
+        } else if (medArrRotated[i][j] === 2) {
+          createNigiri(newSmallBoard);
+          // newSmallBoard.style.backgroundImage = "url(/resources/nigiri.gif)";
+        }
       }
     }
 

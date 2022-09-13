@@ -118,6 +118,30 @@ function secondMove(e) {
   } else if (e.target.id === 'counter') {
     counterCwRotate(allMediumArr[medBoardId])
   }
+  while (medBoard.hasChildNodes()) {
+    medBoard.removeChild(medBoard.firstChild)
+  }
+  const medArrRotated = allMediumArr[medBoardId];
+  for (let i = 0; i < medArrRotated.length; i++) {
+
+    for (let j = 0; j < medArrRotated[0].length; j++) {
+      const newSmallBoard = document.createElement('div');
+      newSmallBoard.className = "board-small";
+      newSmallBoard.id = `${medBoard.id},${i},${j}`;
+      if (medArrRotated[i][j] === 1) {
+        newSmallBoard.style.backgroundColor = "black";
+      } else if (medArrRotated[i][j] === 2) {
+        newSmallBoard.style.backgroundColor = "white";
+      }
+      medBoard.append(newSmallBoard);
+    }
+  }
+
+
+
+
+
+
 
   // const medBoard = e.target.parentNode;
   // const medBoardId = medBoard.id.charAt(1);

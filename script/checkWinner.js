@@ -35,15 +35,15 @@
 
 
 function checkWinner(arr) {
-  //check per row if there's 5 in a row
+  //check if consecutiveCount is 5
   function isFive(count) {
     if (count === 5) {
       alert('We have a winner!')
-      return true
+      return true; // return true to row/column/diagonal check
     }
   }
 
-
+  //check all rows
   for (let i = 0; i < arr.length; i++) {
     let consecutiveCount = 0;
     for (let j = 0; j < arr[0].length; j++) {
@@ -54,13 +54,13 @@ function checkWinner(arr) {
 
       } else { // if stone is same as previous
         consecutiveCount += 1;
-        if (isFive(consecutiveCount)) return
+        if (isFive(consecutiveCount)) return //end checkWinner function if 5 consecutive is detected
       }
     }
   }
   console.log("No winner from row");
 
-  //check per column if there's 5 in a row
+  //check all column
 
   for (let j = 0; j < arr[0].length; j++) {
     let consecutiveCount = 0
@@ -78,7 +78,7 @@ function checkWinner(arr) {
   }
   console.log("no winner from column");
 
-  // check diagonal left bottom to top right  --> rectify done
+  // check diagonal left bottom to top right 
   for (let k = 0; k < arr.length; k++) {
     let i = k;
     let j = 0;
@@ -162,8 +162,8 @@ function checkWinner(arr) {
       j += 1;
     }
   }
-  return false;
-  console.log("no winner yet");
+  return false; // checkwinner function will return false if reach here.
+  // console.log("no winner yet");
 };
 
 // console.log(checkWinnerx(arrWinX));

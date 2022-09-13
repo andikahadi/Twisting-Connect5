@@ -1,5 +1,6 @@
 "use strict"
 
+// Function: getCoordinates --> get the row and column of 3x3 small array
 function getCoordinates(idString) {
   const newArr = idString.split(',');
   newArr.shift();
@@ -7,7 +8,7 @@ function getCoordinates(idString) {
 }
 
 
-console.log(getCoordinates("M1,3,3"));
+// console.log(getCoordinates("M1,3,3"));
 
 // const smallArr1 = [
 //   [1, 2, 3],
@@ -15,6 +16,10 @@ console.log(getCoordinates("M1,3,3"));
 //   [13, 14, 15]
 // ];
 
+
+///////////////////////////
+//Function putStone: push value to array of clicked medium board. does not change the color in front-end
+///////////////////////////
 
 function putStone(idString, allMediumArr, value) {
   //click smallBoard, get id, get coordinate
@@ -27,11 +32,8 @@ function putStone(idString, allMediumArr, value) {
     x = parseInt(coorArr[i + 1]);
   }
   let medArr = allMediumArr[medBoardId];
-  // let stoneInHand = true;
+
   medArr[y][x] = value;
-  // stoneInHand = false;
-
-
   // console.log(`x: ${x}  y: ${y} medArr[${y}][${x}] : ${medArr[y][x]}`);
 }
 

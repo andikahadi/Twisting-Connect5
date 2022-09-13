@@ -1,28 +1,31 @@
 "use strict"
-const smallArr1 = [
-  [1, 2, 3],
-  [7, 8, 9],
-  [13, 14, 15]
-];
+// const smallArr1 = [
+//   [1, 2, 3],
+//   [7, 8, 9],
+//   [13, 14, 15]
+// ];
 
-const smallArr2 = [
-  [4, 5, 6],
-  [10, 11, 12],
-  [16, 17, 18]
-];
+// const smallArr2 = [
+//   [4, 5, 6],
+//   [10, 11, 12],
+//   [16, 17, 18]
+// ];
 
-const smallArr3 = [
-  [19, 20, 21],
-  [25, 26, 27],
-  [31, 32, 33]
-];
+// const smallArr3 = [
+//   [19, 20, 21],
+//   [25, 26, 27],
+//   [31, 32, 33]
+// ];
 
-const smallArr4 = [
-  [22, 23, 24],
-  [28, 29, 30],
-  [34, 35, 36]
-];
+// const smallArr4 = [
+//   [22, 23, 24],
+//   [28, 29, 30],
+//   [34, 35, 36]
+// ];
 
+/////////////////////////////
+//Function: clockwiseRotate and counterCwRotate
+/////////////////////////////
 
 function clockwiseRotate(smallArr) {
   const arr = smallArr;
@@ -76,6 +79,10 @@ function counterCwRotate(smallArr) {
 
 // clockwiseRotate(smallArr);
 
+///////////////////////////////
+//Function: combineArrayHorizontal, combineArrayVertical, combineAllArray
+//////////////////////////////
+
 function combineArrayHorizontal(arr1, arr2) {
   let newArr = [];
   for (let i = 0; i < arr1.length; i++) {
@@ -124,4 +131,4 @@ function combineAllArray(arr1, arr2, arr3, arr4) {
 }
 
 
-console.log(combineAllArray(smallArr1, smallArr2, smallArr3, smallArr4));
+// console.log(combineAllArray(smallArr1, smallArr2, smallArr3, smallArr4));

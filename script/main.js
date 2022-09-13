@@ -1,10 +1,13 @@
 "use strict"
 
-const medBoardDimension = 2; //select dimension of board
-let allMediumArr = [];
-///////////////
-//Generate Medium and Small box
-//////////////
+const medBoardDimension = 2; //dimension of medium board (each medium board is 3x3 small board)
+
+/////////////////////////
+//Function: Generate Array
+/////////////////////////
+
+
+let allMediumArr = []; // array storing medium board 2D array
 
 function generateArray() {
   for (let i = 0; i < medBoardDimension ** 2; i++) {
@@ -18,6 +21,10 @@ function generateArray() {
 
 generateArray();
 console.log(allMediumArr);
+
+/////////////////////////////////
+//Function: Generate Medium and Small box
+////////////////////////////////
 
 function generateMedBoard(num) {
   const largeBoard = document.querySelector('.board-large');
@@ -46,37 +53,38 @@ function generateSmallBoard() {
   }
 }
 
-generateMedBoard(2);
+generateMedBoard(medBoardDimension);
 generateSmallBoard();
 
 
-//////////////
-//
-//////////////
+///////////////////////////////
+//Function: Checking valid move for stone placement
+///////////////////////////////
 
-let rotateDone = true;
+let rotateDone = true; //this track whether player already make rotation, false is have not.
 
 function validMove(idString) {
-  let coorArr = getCoordinates(idString);
+  let coorArr = getCoordinates(idString); //receive input from clicked small board.
   let x;
   let y;
   const medBoardId = idString.charAt(1);
   for (let i = 0; i < coorArr.length; i += 2) {
-    y = parseInt(coorArr[i]);
-    x = parseInt(coorArr[i + 1]);
+    y = parseInt(coorArr[i]); //y represent row (i)
+    x = parseInt(coorArr[i + 1]); //x represent column (j)
   }
   let medArr = allMediumArr[medBoardId];
 
   if (medArr[y][x] === 0 && rotateDone === true) {
-    return true;
+    return true; //move is valid if small board clicked is empty (value == 0), and previous player already rotate board.
   } else {
     return false;
   }
 }
 
-// let smallBoard;
 
-// while (winner === false && moveCount <= 36) {
+///////////////////////////
+//Event Listener. firstMove: Place Stone. secondMove: Rotate Medium Board
+///////////////////////////
 
 let value = 1;
 let smallBoardIdArr = []
@@ -84,13 +92,13 @@ let smallBoardIdArr = []
 document.querySelector('.board-large').addEventListener('click', firstMove);
 
 function firstMove(e) {
-  let smallBoard = e.target;
-  const smallBoardId = e.target.id;
+  // let smallBoard = e.target;
+  const smallBoardId = e.target.id; //store id of small board clicked (format: medBoardId,row,column  --> m0,0,0)
 
-  console.log(smallBoardIdArr);
 
   if (validMove(smallBoardId)) {
-    smallBoardIdArr.push(smallBoardId);
+    smallBoardIdArr.push(smallBoardId); //track id of first valid move
+    // console.log(smallBoardIdArr);
     if (value === 1) {
       e.target.style.backgroundColor = "black";
       putStone(smallBoardId, allMediumArr, value);
@@ -110,23 +118,23 @@ function firstMove(e) {
 };
 
 function secondMove(e) {
-  const firstSmallBoardClickedId = smallBoardIdArr.shift();
-  smallBoardIdArr.length = 0; //reset array to empty
+  const firstSmallBoardClickedId = smallBoardIdArr.shift(); //get the first valid move id
+  smallBoardIdArr.length = 0; //reset array of valid move id to empty
   const firstSmallBoardClicked = document.getElementById(`${firstSmallBoardClickedId}`);
   let medBoard = firstSmallBoardClicked.parentNode;
-  rotateDone = true;
-  let medBoardId = medBoard.id.charAt(1);
+  let medBoardId = medBoard.id.charAt(1); //get id of medium board clicked, use the integer to access 2D array of that medium board 
   if (e.target.id === 'clockwise') {
     clockwiseRotate(allMediumArr[medBoardId])
-    medBoard.style.transition = ".5s ease-in-out";
-    medBoard.style.transform = 'rotate(90deg)';
+    medBoard.style.transition = ".5s ease-in-out"; //css rotation
+    medBoard.style.transform = 'rotate(90deg)'; //css rotation
   } else if (e.target.id === 'counter') {
     counterCwRotate(allMediumArr[medBoardId])
     medBoard.style.transition = ".5s ease-in-out";
     medBoard.style.transform = 'rotate(-90deg)';
   }
+  rotateDone = true; //allows next user to place stone
 
-  setTimeout(() => {
+  setTimeout(() => { //timeout is used to allow css transition to complete, then med board is re printed on screen based on array.
     medBoard.style.transition = "0s";
     medBoard.style.transform = 'rotate(0deg)';
     while (medBoard.hasChildNodes()) {
@@ -148,7 +156,7 @@ function secondMove(e) {
       }
     }
 
-    //combine all 4 medium array into 1 array
+    //combine all four 2D medium array into one 2D array
     let combineArray = combineArrayVertical(combineArrayHorizontal(allMediumArr[0], allMediumArr[1]), combineArrayHorizontal(allMediumArr[2], allMediumArr[3]));
 
     console.log(combineArray);

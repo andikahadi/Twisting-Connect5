@@ -1,4 +1,7 @@
 "use strict";
+//check 8 direction of a point, and count if there is 5 consecutive
+//this 8dir function is not used as iterating through row,column, diagonal is faster
+
 // const arrWinX = [
 //   [0, 0, 0, 0, 0, 0],
 //   [0, 0, 0, 0, 0, 0],

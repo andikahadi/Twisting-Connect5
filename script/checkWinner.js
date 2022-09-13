@@ -19,14 +19,14 @@
 //   [0, 0, 1, 0, 0, 0]
 // ];
 
-const arrWinX = [
-  [1, 1, 0, 0, 0, 0],
-  [0, 2, 1, 0, 0, 0],
-  [1, 0, 2, 1, 0, 0],
-  [0, 1, 0, 2, 1, 0],
-  [1, 0, 1, 0, 2, 1],
-  [0, 1, 0, 2, 0, 2]
-];
+// const arrWinX = [
+//   [1, 1, 0, 0, 0, 0],
+//   [0, 2, 1, 0, 0, 0],
+//   [1, 0, 2, 1, 0, 0],
+//   [0, 1, 0, 2, 1, 0],
+//   [1, 0, 1, 0, 2, 1],
+//   [0, 1, 0, 2, 0, 2]
+// ];
 
 
 /////////////////
@@ -38,6 +38,7 @@ function checkWinner(arr) {
   //check per row if there's 5 in a row
   function isFive(count) {
     if (count === 5) {
+      alert('We have a winner!')
       return true
     }
   }
@@ -53,9 +54,7 @@ function checkWinner(arr) {
 
       } else { // if stone is same as previous
         consecutiveCount += 1;
-        if (isFive(consecutiveCount)) {
-          return true
-        }
+        if (isFive(consecutiveCount)) return
       }
     }
   }
@@ -73,9 +72,7 @@ function checkWinner(arr) {
 
       } else { // if stone is same as previous
         consecutiveCount += 1;
-        if (isFive(consecutiveCount)) {
-          return true
-        }
+        if (isFive(consecutiveCount)) return
       }
     }
   }
@@ -93,9 +90,7 @@ function checkWinner(arr) {
         consecutiveCount = 1;
       } else {
         consecutiveCount += 1;
-        if (isFive(consecutiveCount)) {
-          return true
-        }
+        if (isFive(consecutiveCount)) return
       }
       // console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
       i -= 1;
@@ -114,9 +109,7 @@ function checkWinner(arr) {
         consecutiveCount = 1;
       } else {
         consecutiveCount += 1;
-        if (isFive(consecutiveCount)) {
-          return true
-        }
+        if (isFive(consecutiveCount)) return
       }
       // console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
 
@@ -140,9 +133,7 @@ function checkWinner(arr) {
       } else {
         consecutiveCount += 1;
 
-        if (isFive(consecutiveCount)) {
-          return `We have a winner : ${arr[i][j]}`
-        }
+        if (isFive(consecutiveCount)) return
       }
       // console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
       i += 1;
@@ -163,9 +154,8 @@ function checkWinner(arr) {
       } else {
         consecutiveCount += 1;
 
-        if (isFive(consecutiveCount)) {
-          return `We have a winner : ${arr[i][j]}`
-        }
+        if (isFive(consecutiveCount)) return
+
       }
       // console.log(`${consecutiveCount} i: ${i}  j: ${j}`);
       i += 1;
@@ -176,7 +166,7 @@ function checkWinner(arr) {
   console.log("no winner yet");
 };
 
-console.log(checkWinner(arrWinX));
+// console.log(checkWinnerx(arrWinX));
 
 // function. diagonal1() {
 //   //traverse diagonal

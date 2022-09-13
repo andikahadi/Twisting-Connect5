@@ -115,46 +115,42 @@ function secondMove(e) {
   let medBoardId = medBoard.id.charAt(1);
   if (e.target.id === 'clockwise') {
     clockwiseRotate(allMediumArr[medBoardId])
+    medBoard.style.transition = ".5s ease-in-out";
+    medBoard.style.transform = 'rotate(90deg)';
   } else if (e.target.id === 'counter') {
     counterCwRotate(allMediumArr[medBoardId])
+    medBoard.style.transition = ".5s ease-in-out";
+    medBoard.style.transform = 'rotate(-90deg)';
   }
-  while (medBoard.hasChildNodes()) {
-    medBoard.removeChild(medBoard.firstChild)
-  }
-  const medArrRotated = allMediumArr[medBoardId];
-  for (let i = 0; i < medArrRotated.length; i++) {
 
-    for (let j = 0; j < medArrRotated[0].length; j++) {
-      const newSmallBoard = document.createElement('div');
-      newSmallBoard.className = "board-small";
-      newSmallBoard.id = `${medBoard.id},${i},${j}`;
-      if (medArrRotated[i][j] === 1) {
-        newSmallBoard.style.backgroundColor = "black";
-      } else if (medArrRotated[i][j] === 2) {
-        newSmallBoard.style.backgroundColor = "white";
-      }
-      medBoard.append(newSmallBoard);
+  setTimeout(() => {
+    medBoard.style.transition = "0s";
+    medBoard.style.transform = 'rotate(0deg)';
+    while (medBoard.hasChildNodes()) {
+      medBoard.removeChild(medBoard.firstChild)
     }
-  }
+    const medArrRotated = allMediumArr[medBoardId];
+    for (let i = 0; i < medArrRotated.length; i++) {
 
+      for (let j = 0; j < medArrRotated[0].length; j++) {
+        const newSmallBoard = document.createElement('div');
+        newSmallBoard.className = "board-small";
+        newSmallBoard.id = `${medBoard.id},${i},${j}`;
+        if (medArrRotated[i][j] === 1) {
+          newSmallBoard.style.backgroundColor = "black";
+        } else if (medArrRotated[i][j] === 2) {
+          newSmallBoard.style.backgroundColor = "white";
+        }
+        medBoard.append(newSmallBoard);
+      }
+    }
 
+    //combine all 4 medium array into 1 array
+    let combineArray = combineArrayVertical(combineArrayHorizontal(allMediumArr[0], allMediumArr[1]), combineArrayHorizontal(allMediumArr[2], allMediumArr[3]));
 
+    console.log(combineArray);
+    //check whether there's a winner in combined array
+    checkWinner(combineArray);
+  }, 1000);
 
-
-
-
-  // const medBoard = e.target.parentNode;
-  // const medBoardId = medBoard.id.charAt(1);
-  // console.log(medBoardId);
-  // document.querySelector(".move-box").addEventListener('click', function (e) {
-  //   if (e.target.id === "clockwise") {
-  //     clockwiseRotate(allMediumArr[medBoardId]);
-  //   } else if (e.target.id === "counter") {
-  //     counterCwRotate(allMediumArr[medBoardId])
-  //   }
-
-  let combineArray = combineArrayVertical(combineArrayHorizontal(allMediumArr[0], allMediumArr[1]), combineArrayHorizontal(allMediumArr[2], allMediumArr[3]));
-
-  console.log(combineArray);
-  checkWinner(combineArray);
 }

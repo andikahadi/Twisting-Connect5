@@ -7,25 +7,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link href="style.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-  <div class="header-container">
-
-  </div>
-
-  <div class="move-container">
-    <div class="move-box">
-      <!-- <div class="move">Place Stone</div> -->
-      <div class="move">
-        <div class="rotate" id="clockwise">Clockwise</div>
-        <div class="rotate" id="counter">Counter Clockwise</div>
+  <div id="restart"> Restart </div>
+  <div class="big-container">
+    <div class="player-one-container">
+      <div class="player-one-profile">
+        <h2 class="player-one-turn">
+          Maki's Turn
+        </h2>
+        <div class="crown" id="player-one-crown"></div>
       </div>
     </div>
-  </div>
-  <div class="board-container">
-    <div class="board-large">
 
+    <div class="content-container">
+      <div class="title-container">
+        <h1> Twisting Connect Five</h1>
+        <h2> Maki vs Nigiri</h2>
+      </div>
+      <div class="board-container">
+        <div class="board-large">
+
+        </div>
+      </div>
+      <div class="move-container">
+        <div class="move-box">
+          <!-- <div class="move">Place Stone</div> -->
+          <div class="move">
+            <div class="rotate" id="counter">
+              <br><br>Counter <br>Clockwise
+            </div>
+            <div class="rotate" id="clockwise">
+              <br><br><br>Clockwise
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class=player-two-container>
+      <div class="player-two-profile">
+        <h2 class="player-two-turn">
+          Nigiri's Turn
+        </h2>
+        <div class="crown" id="player-two-crown"></div>
+      </div>
     </div>
   </div>
 </body>

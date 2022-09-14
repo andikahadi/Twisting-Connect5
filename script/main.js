@@ -103,6 +103,8 @@ function createNigiri(smallBoard) {
 
 let value = 1;
 let smallBoardIdArr = []
+let winner = false;
+
 
 document.querySelector('.board-large').addEventListener('click', firstMove);
 
@@ -193,6 +195,31 @@ function secondMove(e) {
     console.log(combineArray);
     //check whether there's a winner in combined array
     checkWinner(combineArray);
+    //if there is a winner, show who win and reset array
+    if (winner) {
+      if (value === 2) {
+        document.querySelector(".player-one-turn").innerText = "Maki Win !";
+        document.querySelector('.board-large').removeEventListener('click', firstMove);
+        document.querySelector('#player-one-crown').style.visibility = "visible";
+      } else {
+        document.querySelector(".player-two-turn").innerText = "Nigiri Win !"
+        document.querySelector('.board-large').addEventListener('click', firstMove);
+        document.querySelector('#player-two-crown').style.visibility = "visible";
+      }
+    } else {
+      if (value === 2) {
+        document.querySelector(".player-two-turn").style.visibility = "visible";
+        document.querySelector(".player-one-turn").style.visibility = "hidden";
+      } else {
+        document.querySelector(".player-two-turn").style.visibility = "hidden";
+        document.querySelector(".player-one-turn").style.visibility = "visible";
+      }
+    }
+    //show and hide player turn
+
+
+
+
   }, 550);
 
 }

@@ -1,78 +1,53 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Play', sans-serif;
 }
 
-.header-container {
-  height: 10em;
-  background-color: grey;
-}
+#restart {}
 
-.board-container {
-  height: 30em;
-  background-color: aqua;
-}
-
-.move-container {
-  height: 10em;
-  background-color: burlywood;
-}
-
-.board-large {
-  height: 25.5em;
-  width: 25.5em;
-  background-color: blue;
-  margin: auto;
+.big-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
 
-.board-medium {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: space-around;
-  height: 12.5em;
-  width: 12.5em;
-  background-color: #ffe6c5;
-  border: 1px solid black;
-  /* transition: .5s ease-in-out; */
-}
-
-.board-small {
-
-  height: 4em;
-  width: 4em;
-  border: 0.5px solid grey;
-  /* background-image: url(/resources/maki-pixel.gif); */
-  background-size: contain;
+  height: 800px;
+  width: 100vw;
+  flex-direction: row;
+  background-image: url(/resources//cartoon-bamboo-forest-card-tropical-floral-background-nature-rainforest-in-asia-vector.webp);
   background-size: cover;
 }
 
-.move-box {
-  height: 8em;
-  width: 20em;
-  background-color: orange;
-  margin: auto;
+/* Player 1 and Player 2 CSS */
+.player-one-container,
+.player-two-container {
   display: flex;
-}
-
-.move {
-  display: flex;
-  flex-direction: column;
+  width: 25%;
   height: 100%;
-  width: 100%;
-  text-align: center;
+  /* background-color: green; */
+  position: relative;
 }
 
-.rotate {
-  height: 50%;
-  border: 1px solid black;
+.player-one-profile,
+.player-two-profile {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  height: 40%;
+  margin: 10em auto;
+  /* background-color: white; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 1em;
+  border: 1px solid chocolate;
+  position: relative;
 }
 
-.redBorder {
-  border: 2px solid red;
+.player-one-profile {
+  background-image: url(/resources/8f35d8ef072d7dc88d1163989b022976.jpeg);
+}
+
+.player-two-profile {
+  background-image: url(/resources/nigiri-samurai.jpeg);
 }
 
 .maki,
@@ -90,4 +65,152 @@ body {
 
 .nigiri {
   background-image: url(/resources/nigiri.gif);
+}
+
+.player-one-turn {
+  visibility: visible;
+  animation: animate 1.5s linear infinite;
+}
+
+.player-two-turn {
+  visibility: hidden;
+  animation: animate 1.5s linear infinite;
+}
+
+.crown {
+  height: 6em;
+  width: 6em;
+  background-image: url(/resources/crown.gif);
+  background-size: contain;
+  position: absolute;
+  top: 1.5em;
+}
+
+#player-one-crown {
+  visibility: hidden;
+}
+
+#player-two-crown {
+  visibility: hidden;
+}
+
+/* Board and Move button CSS */
+
+
+.title-container {
+  height: 20%;
+  /* background-color: salmon; */
+  text-align: center;
+}
+
+.title-container h1 {
+  font-size: 2.5em;
+}
+
+.content-container {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.board-container {
+  height: 60%;
+  /* background-color: aqua; */
+}
+
+.move-container {
+  height: 20%;
+}
+
+.board-large {
+  /* padding-bottom: 80%; */
+  width: 30em;
+  height: 30em;
+  /* background-color: blue; */
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.board-medium {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  height: 14.8em;
+  width: 14.8em;
+  background-color: #ffe6c5;
+  border: 1px solid black;
+  /* transition: .5s ease-in-out; */
+}
+
+.board-small {
+
+  height: 4.85em;
+  width: 4.85em;
+  border: 0.5px solid grey;
+  /* background-image: url(/resources/maki-pixel.gif); */
+  background-size: contain;
+  background-size: cover;
+}
+
+.move-box {
+  height: 8em;
+  width: 15em;
+  margin: auto;
+  display: flex;
+  /* justify-content: center; */
+}
+
+.move {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.rotate {
+  height: 7em;
+  width: 7em;
+  align-content: center;
+}
+
+.rotate h3 {
+  padding: 1em;
+}
+
+#counter {
+  background-image: url(/resources/counterclockwise.png);
+  background-size: contain;
+  /* background-size: cover; */
+  background-repeat: no-repeat;
+  background-position-x: 0.5em;
+}
+
+#clockwise {
+  background-image: url(/resources/clockwise.png);
+  background-size: contain;
+  /* background-size: cover; */
+  background-repeat: no-repeat;
+  background-position-x: 0em;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
 }

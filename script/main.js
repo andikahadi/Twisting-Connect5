@@ -22,6 +22,9 @@ function generateArray() {
 generateArray();
 console.log(allMediumArr);
 
+
+//testing
+
 /////////////////////////////////
 //Function: Generate Medium and Small box
 ////////////////////////////////

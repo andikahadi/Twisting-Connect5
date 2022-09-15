@@ -22,6 +22,9 @@ function generateArray() {
 generateArray();
 console.log(allMediumArr);
 
+
+//testing
+
 /////////////////////////////////
 //Function: Generate Medium and Small box
 ////////////////////////////////
@@ -200,11 +203,11 @@ function secondMove(e) {
         document.querySelector(".player-one-turn").style.visibility = "visible";
       }
     }
-    //show and hide player turn
-
-
-
 
   }, 550);
 
 }
+
+document.querySelector('.next-round').addEventListener('click', function () {
+  window.location.reload();
+});

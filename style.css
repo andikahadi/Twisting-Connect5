@@ -4,12 +4,12 @@ body {
   font-family: 'Play', sans-serif;
 }
 
-#restart {}
+
 
 .big-container {
   display: flex;
 
-  height: 800px;
+  height: 100vh;
   width: 100vw;
   flex-direction: row;
   background-image: url(/resources//cartoon-bamboo-forest-card-tropical-floral-background-nature-rainforest-in-asia-vector.webp);
@@ -24,6 +24,17 @@ body {
   height: 100%;
   /* background-color: green; */
   position: relative;
+}
+
+.next-round {
+  font-size: 1.5em;
+  position: absolute;
+  top: 1em;
+  left: 2.5em;
+  background-color: #eddebf;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  border: 1px solid chocolate;
 }
 
 .player-one-profile,

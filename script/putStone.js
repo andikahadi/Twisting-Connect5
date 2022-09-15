@@ -37,5 +37,22 @@ function putStone(idString, allMediumArr, value) {
   // console.log(`x: ${x}  y: ${y} medArr[${y}][${x}] : ${medArr[y][x]}`);
 }
 
+function createMaki(smallBoard) {
+  const gifDiv = document.createElement('div');
+  gifDiv.className = 'maki';
+  smallBoard.append(gifDiv);
+  const medBoardId = smallBoard.parentNode.id;
+  gifDiv.classList.add(`${medBoardId}-sushi`);
+}
+
+function createNigiri(smallBoard) {
+  const gifDiv = document.createElement('div');
+  gifDiv.className = 'nigiri';
+  smallBoard.append(gifDiv);
+  const medBoardId = smallBoard.parentNode.id;
+  gifDiv.classList.add(`${medBoardId}-sushi`);
+}
+
+
 // putStone("M1,2,2", smallArr1, 2);
 // console.log(smallArr1);

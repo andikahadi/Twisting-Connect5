@@ -85,21 +85,6 @@ function validMove(idString) {
 ///////////////////////////
 //Event Listener. firstMove: Place Stone. secondMove: Rotate Medium Board
 ///////////////////////////
-function createMaki(smallBoard) {
-  const gifDiv = document.createElement('div');
-  gifDiv.className = 'maki';
-  smallBoard.append(gifDiv);
-  const medBoardId = smallBoard.parentNode.id;
-  gifDiv.classList.add(`${medBoardId}-sushi`);
-}
-
-function createNigiri(smallBoard) {
-  const gifDiv = document.createElement('div');
-  gifDiv.className = 'nigiri';
-  smallBoard.append(gifDiv);
-  const medBoardId = smallBoard.parentNode.id;
-  gifDiv.classList.add(`${medBoardId}-sushi`);
-}
 
 let value = 1;
 let smallBoardIdArr = []

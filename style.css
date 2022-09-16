@@ -27,15 +27,47 @@ body {
 }
 
 .next-round {
-  font-size: 1.5em;
+
   position: absolute;
   top: 1em;
   left: 2.5em;
+
+}
+
+.button {
   background-color: #eddebf;
   border-radius: 0.5em;
   padding: 0.5em;
   border: 1px solid chocolate;
+  font-size: 1.5em;
 }
+
+#intro-start,
+#intro-rules {
+  width: 40%;
+  text-align: center;
+  margin: 1em auto;
+}
+
+#rule-page {
+  background-color: #eddebf;
+
+  border: 0.5em solid #6b9b82;
+  width: 60%;
+  margin: 0em auto;
+  padding: 1em;
+}
+
+#rule-page h2 {
+  text-align: center;
+  margin: 0;
+}
+
+#rule-page p {
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
 
 .player-one-profile,
 .player-two-profile {
@@ -112,6 +144,11 @@ body {
   height: 20%;
   /* background-color: salmon; */
   text-align: center;
+}
+
+.intro {
+  width: 100%;
+  margin: 0 auto;
 }
 
 .title-container h1 {

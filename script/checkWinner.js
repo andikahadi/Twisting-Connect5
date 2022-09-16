@@ -38,7 +38,6 @@ function checkWinner(arr) {
   //check if consecutiveCount is 5
   function isFive(count) {
     if (count === 5) {
-      // alert('We have a winner!')
       winner = true;
       console.log(`winner : ${winner}`);
       return true; // return true to row/column/diagonal check
